@@ -12,3 +12,6 @@ class Trick(models.Model):
             ('o', 'other')],
         default='other')
     official = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name

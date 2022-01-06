@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_extensions',
+
     'main.apps.MainConfig',
     'tricks.apps.TricksConfig',
 ]
@@ -125,3 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# shell_plus
+
+SHELL_PLUS_PRINT_SQL = True
