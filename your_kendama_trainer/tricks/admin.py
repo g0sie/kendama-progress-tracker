@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from .models import Trick
+from .models import Trick, Tutorial
+
+
+@admin.register(Tutorial)
+class TutorialAdmin(admin.ModelAdmin):
+    list_display = ['trick', 'author']
+    list_filter = ['author']
 
 
 @admin.register(Trick)
