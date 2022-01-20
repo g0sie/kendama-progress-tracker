@@ -1,0 +1,16 @@
+from django.contrib import admin
+
+from .models import Trick, Tutorial
+
+
+@admin.register(Tutorial)
+class TutorialAdmin(admin.ModelAdmin):
+    list_display = ['trick', 'author']
+    list_filter = ['author']
+
+
+@admin.register(Trick)
+class TrickAdmin(admin.ModelAdmin):
+    list_display = ['name', 'difficulty', 'official']
+    search_fields = ['name']
+    list_filter = ['official', 'difficulty']
