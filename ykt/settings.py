@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'tricks.apps.TricksConfig',
+    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
