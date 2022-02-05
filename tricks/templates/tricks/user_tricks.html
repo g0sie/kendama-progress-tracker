@@ -1,13 +1,17 @@
 {% extends "main/base.html" %}
+{% load tricks_extras %}
 {% block title %}twoje triki{% endblock %}
 {% block body %}
     {% for user_trick in user_trick_pairs %}
-        <div class="card">
+        <div class="card {% color user_trick.rank %}">
           <div class="card-header">
-            {{ user_trick.trick }}
+            {{ user_trick.trick.name }}
           </div>
           <div class="card-body">
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ user_trick.land_count }}" style="width: {{ user_trick.land_count }}%" aria-valuemin="0" aria-valuemax="100">{{ user_trick.land_count }}</div>
+              </div>
             <a href="#" class="btn btn-primary">+1</a>
           </div>
         </div>
