@@ -35,8 +35,17 @@ class UserTrick(models.Model):
     land_count = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(100)])
     # when the trick was added
     added = models.DateTimeField(auto_now_add=True)
-    # when the trick was passed if was
+    # when the trick was passed if it was
     passed = models.DateTimeField(blank=True, null=True)
+
+    class Rank(models.IntegerChoices):
+        cobblestone = 1     # default
+        coal = 2            # 10 times landed
+        silver = 3          # 25 times landed
+        redstone = 4        # 50 times landed
+        gold = 5            # 100 times landed
+        diamond = 6         # passed
+    rank = models.IntegerField(choices=Rank.choices, default=1)
 
     def __str__(self):
         return f"user: {self.user}, trick: {self.trick}, " \
