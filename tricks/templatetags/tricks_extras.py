@@ -47,3 +47,19 @@ def progress_bar(rank: int, land_count: int):
     html_str += f'{land_count}</div>'
     html_str += '</div>'
     return format_html(html_str)
+
+
+@register.simple_tag
+def button(rank: int, land_count: int, id: int):
+    """returns +1 land_count button or rank up button"""
+    max_value = {
+        1: 10,
+        2: 25,
+        3: 50,
+        4: 100,
+    }
+    if land_count < max_value[rank]:
+        html_button = f'<button type="submit" name="land_{id}" class="btn btn-primary">+1</a>'
+    else:
+        html_button = f'<button type="submit" name="rankup_{id}" class="btn btn-primary">rank up</a>'
+    return format_html(html_button)

@@ -11,7 +11,10 @@
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               {% if user_trick.rank <= 4 %}
                 {% progress_bar user_trick.rank user_trick.land_count %}
-                <a href="#" class="btn btn-primary">+1</a>
+                  <form action="{% url 'tricks:user_tricks' %}" method="post">
+                    {% csrf_token %}
+                    {% button user_trick.rank user_trick.land_count user_trick.id %}
+                  </form>
               {% endif %}
           </div>
         </div>
