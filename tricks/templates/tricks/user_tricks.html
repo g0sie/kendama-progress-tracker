@@ -2,10 +2,12 @@
 {% load tricks_extras %}
 {% block title %}twoje triki{% endblock %}
 {% block body %}
+    <div class="row row-cols-1 row-cols-md-3 g-3">
     {% for user_trick in user_trick_pairs %}
-        <div class="card {% card_color user_trick.rank %}">
+        <div class="col">
+        <div class="card {% card_color user_trick.rank %} h-100 text-center">
           <div class="card-header">
-              {{ user_trick.trick.name }}
+              <h5>{{ user_trick.trick.name }}</h5>
           </div>
           <div class="card-body">
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -18,5 +20,7 @@
               {% endif %}
           </div>
         </div>
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}
