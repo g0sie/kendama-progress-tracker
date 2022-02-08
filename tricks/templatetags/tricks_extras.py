@@ -18,13 +18,30 @@ def card_color(rank: int) -> str:
     return colors[rank]
 
 
-def progress_color(rank: int) -> str:
-    """returns bg color for progress bar"""
+@register.simple_tag
+def button_color(rank: int) -> str:
+    """returns color for button"""
     colors = {
-        1: "progress-bar-striped bg-dark text-white",
-        2: "progress-bar-striped bg-secondary text-white",
-        3: "progress-bar-striped bg-secondary text-white",
-        4: "progress-bar-striped bg-secondary text-white",
+        1: "btn-secondary",
+        2: "btn-dark",
+        3: "btn-light",
+        4: "btn-danger",
+        5: "btn-warning text-dark",
+        6: "btn-info text-dark",
+    }
+    return colors[rank]
+
+
+@register.simple_tag
+def list_color(rank: int) -> str:
+    """returns color for card body"""
+    colors = {
+        1: "list-group-item-secondary",
+        2: "list-group-item-dark",
+        3: "list-group-item-light",
+        4: "list-group-item-danger",
+        5: "list-group-item-warning",
+        6: "list-group-item-info",
     }
     return colors[rank]
 
@@ -41,7 +58,7 @@ def progress_bar(rank: int, land_count: int):
     land_count = min(land_count, max_value[rank])
     percentage = land_count / max_value[rank] * 100
     html_str = '<div class="progress">'
-    html_str += f'<div class="progress-bar {progress_color(rank)}" role="progressbar" '
+    html_str += f'<div class="progress-bar {card_color(rank)}" role="progressbar" '
     html_str += f'aria-valuenow="{land_count}" style="width: {percentage}%" '
     html_str += f'aria-valuemin="0" aria-valuemax="{max_value[rank]}">'
     html_str += f'{land_count}</div>'
@@ -59,7 +76,7 @@ def button(rank: int, land_count: int, id: int):
         4: 100,
     }
     if land_count < max_value[rank]:
-        html_button = f'<button type="submit" name="land_{id}" class="btn btn-primary">+1</a>'
+        html_button = f'<button type="submit" name="land_{id}" class="btn {button_color(rank)}">+1</a>'
     else:
-        html_button = f'<button type="submit" name="rankup_{id}" class="btn btn-primary">rank up</a>'
+        html_button = f'<button type="submit" name="rankup_{id}" class="btn {button_color(rank)}">rank up</a>'
     return format_html(html_button)

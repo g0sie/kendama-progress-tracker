@@ -41,7 +41,7 @@ class UserTrick(models.Model):
     class Rank(models.IntegerChoices):
         cobblestone = 1     # default
         coal = 2            # 10 times landed
-        silver = 3          # 25 times landed
+        iron = 3            # 25 times landed
         redstone = 4        # 50 times landed
         gold = 5            # 100 times landed
         diamond = 6         # passed

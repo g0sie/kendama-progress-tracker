@@ -4,21 +4,54 @@
 {% block body %}
     <div class="row row-cols-1 row-cols-md-3 g-3">
     {% for user_trick in user_trick_pairs %}
-        <div class="col">
+        <div class="col-6">
         <div class="card {% card_color user_trick.rank %} h-100 text-center">
           <div class="card-header">
               <h5>{{ user_trick.trick.name }}</h5>
           </div>
-          <div class="card-body">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              {% if user_trick.rank <= 4 %}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item {% list_color user_trick.rank %}">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                  <div class="col-3">
+                    <div class="dropdown">
+                      <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        tutoriale
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="dropdown">
+                      <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        triki bazowe
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            {% if user_trick.rank <= 4 %}
+              <li class="list-group-item {% list_color user_trick.rank %}">
                 {% progress_bar user_trick.rank user_trick.land_count %}
-                  <form action="{% url 'tricks:user_tricks' %}" method="post">
+              </li>
+              <li class="list-group-item {% list_color user_trick.rank %}">
+                <form action="{% url 'tricks:user_tricks' %}" method="post">
                     {% csrf_token %}
-                    {% button user_trick.rank user_trick.land_count user_trick.id %}
-                  </form>
-              {% endif %}
-          </div>
+                      <div class="d-grid gap-2 col-6 mx-auto">
+                        {% button user_trick.rank user_trick.land_count user_trick.id %}
+                      </div>
+                </form>
+              </li>
+            {% endif %}
+          </ul>
         </div>
         </div>
     {% endfor %}
