@@ -61,7 +61,7 @@ def progress_bar(rank: int, land_count: int):
     html_str += f'<div class="progress-bar {card_color(rank)}" role="progressbar" '
     html_str += f'aria-valuenow="{land_count}" style="width: {percentage}%" '
     html_str += f'aria-valuemin="0" aria-valuemax="{max_value[rank]}">'
-    html_str += f'{land_count}</div>'
+    html_str += f'{land_count}/{max_value[rank]}</div>'
     html_str += '</div>'
     return format_html(html_str)
 
