@@ -18,9 +18,9 @@
                         tutoriale
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        {% for tutorial in user_trick.trick.tutorials.all %}
+                            <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
                   </div>
