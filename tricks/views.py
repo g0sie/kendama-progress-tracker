@@ -31,6 +31,14 @@ def land_trick(user_trick_id: int):
 
 
 def rank_up_trick(user_trick_id: int):
+    requirements = {
+        1: 10,
+        2: 25,
+        3: 50,
+        4: 100,
+        5: 999,
+    }
     user_trick = UserTrick.objects.get(id=user_trick_id)
-    user_trick.rank += 1
-    user_trick.save()
+    if user_trick.land_count >= requirements[user_trick.rank]:
+        user_trick.rank += 1
+        user_trick.save()
