@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from .models import Trick, UserTrick
+from .forms import TrickForm
 
 
 def user_tricks(request):
@@ -45,4 +46,5 @@ def rank_up_trick(user_trick_id: int):
 
 
 def add_new_trick(request):
-    return render(request, 'tricks/add_new_trick.html')
+    form = TrickForm()
+    return render(request, 'tricks/add_new_trick.html', {'form': form})
