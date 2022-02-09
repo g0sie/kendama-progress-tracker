@@ -42,3 +42,7 @@ def rank_up_trick(user_trick_id: int):
     if user_trick.land_count >= requirements[user_trick.rank]:
         user_trick.rank += 1
         user_trick.save()
+
+
+def add_new_trick(request):
+    return render(request, 'tricks/add_new_trick.html')
