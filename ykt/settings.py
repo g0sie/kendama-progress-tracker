@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'crispy_forms',
 
     'main.apps.MainConfig',
     'tricks.apps.TricksConfig',
@@ -132,3 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # shell_plus
 
 SHELL_PLUS_PRINT_SQL = True
+
+# crispy forms
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
