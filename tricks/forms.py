@@ -29,7 +29,7 @@ class TrickForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_action = 'tricks/add'
+        self.helper.form_action = 'add'
         self.helper.layout = Layout(
             Row('name', css_class='row mb-3'),
             Row('difficulty', css_class='row mb-3'),
