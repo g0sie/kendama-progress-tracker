@@ -46,5 +46,12 @@ def rank_up_trick(user_trick_id: int):
 
 
 def add_new_trick(request):
-    form = TrickForm()
-    return render(request, 'tricks/add_new_trick.html', {'form': form})
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = TrickForm(data=request.POST)
+            if form.is_valid():
+                trick = form.save()
+                UserTrick.objects.create(user=request.user, trick=trick)
+                HttpResponseRedirect(reverse("tricks:add_new_trick"))
+        form = TrickForm()
+        return render(request, 'tricks/add_new_trick.html', {'form': form})
