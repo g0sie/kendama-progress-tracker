@@ -21,7 +21,7 @@ def user_tricks(request):
             return HttpResponseRedirect(reverse('tricks:user_tricks'))
         user_trick_pairs = UserTrick.objects.filter(user=request.user) \
             .select_related("trick").prefetch_related("trick__tutorials") \
-            .order_by("rank", "trick__official")
+            .order_by("rank", "-trick__official")
         return render(request, "tricks/user_tricks.html", {'user_trick_pairs': user_trick_pairs})
 
 
