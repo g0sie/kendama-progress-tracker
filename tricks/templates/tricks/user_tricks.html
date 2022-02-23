@@ -22,34 +22,24 @@
                   <h5>{{ user_trick.trick.name }}</h5>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item {% list_color user_trick.rank %}">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                      <div class="col-3">
-                        <div class="dropdown">
-                          <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            tutoriale
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for tutorial in user_trick.trick.tutorials.all %}
-                                <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
-                            {% endfor %}
-                          </ul>
+                {% if user_trick.trick.official %}
+                    <li class="list-group-item {% list_color user_trick.rank %}">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                          <div class="col-3">
+                            <div class="dropdown">
+                              <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                tutoriale
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% for tutorial in user_trick.trick.tutorials.all %}
+                                    <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-4">
-                        <div class="dropdown">
-                          <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            triki bazowe
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for base_trick in user_trick.trick.base_tricks.all %}
-                                <li><a class="dropdown-item" href="#">{{ base_trick.name }}</a></li>
-                            {% endfor %}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                </li>
+                    </li>
+                {% endif %}
                 {% if user_trick.rank <= 4 %}
                   <li class="list-group-item {% list_color user_trick.rank %}">
                     {% progress_bar user_trick.rank user_trick.land_count %}

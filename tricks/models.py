@@ -20,7 +20,6 @@ class Trick(Timestamped):
             ('a', 'advanced'),
             ('o', 'other')],
         default='other')
-    base_tricks = models.ManyToManyField('Trick', blank=True)
     # official tricks are in official list of tricks
     official = models.BooleanField(default=False)
 
