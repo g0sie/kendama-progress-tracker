@@ -13,7 +13,23 @@
             </ul>
         </div>
         <div class="card-body">
-
+            {% for trick in tricks %}
+                <div class="card">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ trick.name }}</h5>
+                          {% for tutorial in trick.tutorials.all %}
+                              <a href="{{ tutorial.url }}" class="card-link">tutorial {{ tutorial.author }}</a>
+                          {% endfor %}
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-2 col-lg-2 col-xl-1 col-xxl-1 align-self-center">
+                        <button type="button" class="btn btn-outline-dark">dodaj</button>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -59,5 +59,6 @@ def add_new_trick(request):
 
 
 def add_from_list(request):
+    tricks = Trick.objects.filter(official=True).prefetch_related("tutorials")
     if request.user.is_authenticated:
-        return render(request, 'tricks/add_from_list.html')
+        return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
