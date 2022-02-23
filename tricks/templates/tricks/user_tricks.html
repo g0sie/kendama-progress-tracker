@@ -22,35 +22,40 @@
                   <h5>{{ user_trick.trick.name }}</h5>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item {% list_color user_trick.rank %}">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-between">
-                      <div class="col-3">
-                        <div class="dropdown">
-                          <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            tutoriale
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% for tutorial in user_trick.trick.tutorials.all %}
-                                <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
-                            {% endfor %}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                </li>
-                {% if user_trick.rank <= 4 %}
-                  <li class="list-group-item {% list_color user_trick.rank %}">
-                    {% progress_bar user_trick.rank user_trick.land_count %}
-                  </li>
-                  <li class="list-group-item {% list_color user_trick.rank %}">
-                    <form action="{% url 'tricks:user_tricks' %}" method="post">
-                        {% csrf_token %}
-                          <div class="d-grid gap-2 col-6 mx-auto">
-                            {% button user_trick.rank user_trick.land_count user_trick.id %}
+                {% if user_trick.trick.official %}
+                    <li class="list-group-item {% list_color user_trick.rank %}">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                          <div class="col-3">
+                            <div class="dropdown">
+                              <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                tutoriale
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% for tutorial in user_trick.trick.tutorials.all %}
+                                    <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
                           </div>
-                    </form>
-                  </li>
+                        </div>
+                    </li>
                 {% endif %}
+
+                  <li class="list-group-item {% list_color user_trick.rank %}">
+                    {% if user_trick.rank <= 4 %}
+                        {% progress_bar user_trick.rank user_trick.land_count %}
+                    {% endif %}
+                  </li>
+                  <li class="list-group-item {% list_color user_trick.rank %}">
+                    {% if user_trick.rank <= 4 %}
+                        <form action="{% url 'tricks:user_tricks' %}" method="post">
+                            {% csrf_token %}
+                              <div class="d-grid gap-2 col-6 mx-auto">
+                                {% button user_trick.rank user_trick.land_count user_trick.id %}
+                              </div>
+                        </form>
+                    {% endif %}
+                  </li>
               </ul>
             </div>
             </div>
