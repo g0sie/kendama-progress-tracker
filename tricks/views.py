@@ -20,7 +20,7 @@ def user_tricks(request):
                 rank_up_trick(key)
             return HttpResponseRedirect(reverse('tricks:user_tricks'))
         user_trick_pairs = UserTrick.objects.filter(user=request.user)\
-            .select_related("trick").prefetch_related("trick__tutorials", "trick__base_tricks")
+            .select_related("trick").prefetch_related("trick__tutorials")
         return render(request, "tricks/user_tricks.html", {'user_trick_pairs': user_trick_pairs})
 
 
