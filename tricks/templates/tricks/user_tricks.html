@@ -40,22 +40,19 @@
                         </div>
                     </li>
                 {% endif %}
-
+                {% if user_trick.rank <= 4 %}
                   <li class="list-group-item {% list_color user_trick.rank %}">
-                    {% if user_trick.rank <= 4 %}
-                        {% progress_bar user_trick.rank user_trick.land_count %}
-                    {% endif %}
+                    {% progress_bar user_trick.rank user_trick.land_count %}
                   </li>
                   <li class="list-group-item {% list_color user_trick.rank %}">
-                    {% if user_trick.rank <= 4 %}
-                        <form action="{% url 'tricks:user_tricks' %}" method="post">
-                            {% csrf_token %}
-                              <div class="d-grid gap-2 col-6 mx-auto">
-                                {% button user_trick.rank user_trick.land_count user_trick.id %}
-                              </div>
-                        </form>
-                    {% endif %}
+                    <form action="{% url 'tricks:user_tricks' %}" method="post">
+                        {% csrf_token %}
+                          <div class="d-grid gap-2 col-6 mx-auto">
+                            {% button user_trick.rank user_trick.land_count user_trick.id %}
+                          </div>
+                    </form>
                   </li>
+                {% endif %}
               </ul>
             </div>
             </div>
