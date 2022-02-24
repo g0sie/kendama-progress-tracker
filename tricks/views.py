@@ -56,3 +56,20 @@ def add_new_trick(request):
                 HttpResponseRedirect(reverse("tricks:add_new_trick"))
         form = TrickForm()
         return render(request, 'tricks/add_new_trick.html', {'form': form})
+      
+      
+def add_from_list(request):
+    """displays official trick list"""
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            # get id of the trick to add
+            add_keys = [key for key in request.POST.keys() if key.startswith("add_")]
+            add_key = int(add_keys[0].split("_")[1])
+            # check if user has the trick already
+            if add_key not in UserTrick.objects.filter(user=request.user).values("trick__id"):
+                trick = Trick.objects.get(id=add_key)
+                UserTrick.objects.create(user=request.user, trick=trick)
+        # display only the tricks the user doesn't have
+        user_tricks_ids = UserTrick.objects.filter(user=request.user).values('trick__id')
+        tricks = Trick.objects.filter(official=True).exclude(id__in=user_tricks_ids).prefetch_related("tutorials")
+        return render(request, 'tricks/add_from_list.html', {'tricks': tricks})

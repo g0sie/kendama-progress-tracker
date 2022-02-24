@@ -9,7 +9,7 @@
             dodaj trik
           </button>
           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">z listy</a></li>
+            <li><a class="dropdown-item" href="{% url "tricks:add_from_list" %}">z listy</a></li>
             <li><a class="dropdown-item" href="{% url "tricks:add_new_trick" %}">nowy</a></li>
           </ul>
         </div>
