@@ -56,8 +56,8 @@ def add_new_trick(request):
                 HttpResponseRedirect(reverse("tricks:add_new_trick"))
         form = TrickForm()
         return render(request, 'tricks/add_new_trick.html', {'form': form})
-
-
+      
+      
 def add_from_list(request):
     """displays official trick list"""
     if request.user.is_authenticated:
