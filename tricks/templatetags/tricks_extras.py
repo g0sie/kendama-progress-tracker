@@ -67,16 +67,14 @@ def progress_bar(rank: int, land_count: int):
 
 
 @register.simple_tag
-def button(rank: int, land_count: int, id: int):
-    """returns +1 land_count button or rank up button"""
+def get_is_rank_up(rank: int, land_count: int):
+    """returns true if the trick meet the requirements to rank up"""
     max_value = {
         1: 10,
         2: 25,
         3: 50,
         4: 100,
     }
-    if land_count < max_value[rank]:
-        html_button = f'<button type="submit" name="land_{id}" class="btn {button_color(rank)}">+1</a>'
-    else:
-        html_button = f'<button type="submit" name="rankup_{id}" class="btn {button_color(rank)}">rank up</a>'
-    return format_html(html_button)
+    if land_count >= max_value[rank]:
+        return True
+    return False

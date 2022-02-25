@@ -48,7 +48,12 @@
                     <form action="{% url 'tricks:user_tricks' %}" method="post">
                         {% csrf_token %}
                           <div class="d-grid gap-2 col-6 mx-auto">
-                            {% button user_trick.rank user_trick.land_count user_trick.id %}
+                            {% get_is_rank_up user_trick.rank user_trick.land_count as is_rank_up %}
+                              {% if is_rank_up %}
+                                  <button type="submit" name="rankup_{{ user_trick.id }}" class="btn {% button_color user_trick.rank %}">rank up</button>
+                              {% else %}
+                                  <button type="submit" name="land_{{ user_trick.id }}" class="btn {% button_color user_trick.rank %}">+1</button>
+                              {% endif %}
                           </div>
                     </form>
                   </li>
