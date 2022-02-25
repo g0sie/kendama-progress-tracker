@@ -24,12 +24,12 @@
                           {% endfor %}
                       </div>
                     </div>
-                    <form action="{% url 'tricks:add_from_list' %}" method="post">
-                        {% csrf_token %}
-                        <div class="col-sm-3 col-md-2 col-lg-2 col-xl-1 col-xxl-1 align-self-center">
+                    <div class="col-sm-3 col-md-2 col-lg-2 col-xl-1 col-xxl-1 align-self-center">
+                        <form action="{% url 'tricks:add_from_list' %}" method="post">
+                            {% csrf_token %}
                             <button name="add_{{ trick.id }}" type="submit" class="btn btn-outline-dark">dodaj</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                   </div>
                 </div>
             {% endfor %}
