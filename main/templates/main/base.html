@@ -22,9 +22,7 @@
                 <a class="nav-link disabled">losuj trik</a>
               </li>
             </ul>
-        <div class="text-end">
-            <img src="{% static "main/img/ken16.png" %}" alt="kens: ">
-        </div>
+            <div><strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens"></div>
         </header>
         {% block body %}{% endblock %}
     </div>
