@@ -69,7 +69,7 @@ def add_from_list(request):
             add_keys = [key for key in request.POST.keys() if key.startswith("add_")]
             add_key = int(add_keys[0].split("_")[1])
             # check if user has the trick already
-            if add_key not in UserTrick.objects.filter(user=request.user).values("trick__id"):
+            if add_key not in UserTrick.objects.filter(user=request.user).values_list("trick__id", flat=True):
                 trick = Trick.objects.get(id=add_key)
                 UserTrick.objects.create(user=request.user, trick=trick)
         # display only the tricks the user doesn't have
