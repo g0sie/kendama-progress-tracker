@@ -33,6 +33,7 @@ def land_trick(user_trick_id: int):
 
 
 def rank_up_trick(user_trick_id: int):
+    """if the requirements are met the trick ranks up and user gets 10 kens"""
     requirements = {
         1: 10,
         2: 25,
@@ -42,6 +43,8 @@ def rank_up_trick(user_trick_id: int):
     }
     user_trick = UserTrick.objects.get(id=user_trick_id)
     if user_trick.land_count >= requirements[user_trick.rank]:
+        user_trick.user.profile.kens += 10
+        user_trick.user.profile.save()
         user_trick.rank += 1
         user_trick.save()
 
