@@ -1,4 +1,7 @@
+import random
+
 from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.db.models import Max
 
 from .models import Trick, UserTrick
 from .forms import TrickForm
@@ -78,6 +81,13 @@ def add_from_list(request):
         return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
 
 
+def get_random_trick(user):
+    tricks = Trick.objects.filter(user_trick__user=user)
+    count = tricks.count()
+    return tricks[random.randint(0, count - 1)]
+
+
 def draw_a_trick(request):
     if request.user.is_authenticated:
-        return render(request, 'tricks/draw_a_trick.html')
+        trick = get_random_trick(request.user)
+        return render(request, 'tricks/draw_a_trick.html', {'trick': trick})
