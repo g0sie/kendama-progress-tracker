@@ -76,3 +76,8 @@ def add_from_list(request):
         user_tricks_ids = UserTrick.objects.filter(user=request.user).values('trick__id')
         tricks = Trick.objects.filter(official=True).exclude(id__in=user_tricks_ids).prefetch_related("tutorials")
         return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
+
+
+def draw_a_trick(request):
+    if request.user.is_authenticated:
+        return render(request, 'tricks/draw_a_trick.html')
