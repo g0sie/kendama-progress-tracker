@@ -89,5 +89,14 @@ def get_random_user_trick(user):
 
 def draw_a_trick(request):
     if request.user.is_authenticated:
+        if request.method == 'POST':
+            # if user clicked 'land' button
+            land_keys = [key for key in request.POST.keys() if key.startswith("land_")]
+            if land_keys:
+                key = int(land_keys[0].split("_")[1])
+                land_trick(key)
+                request.user.profile.kens += 1
+                request.user.profile.save()
+            return HttpResponseRedirect(reverse('tricks:draw'))
         user_trick = get_random_user_trick(request.user)
         return render(request, 'tricks/draw_a_trick.html', {'user_trick': user_trick})
