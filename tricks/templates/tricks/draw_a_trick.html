@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load tricks_extras %}
+{% block title %} losuj trik {% endblock %}
+{% block body %}
+        <div class="card {% card_color user_trick.rank %} text-center">
+          <div class="card-header">
+              <h5>{{ user_trick.trick.name }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            {% if user_trick.trick.official %}
+                <li class="list-group-item {% list_color user_trick.rank %}">
+                    <div class="d-grid gap-2 d-md-flex">
+                      <div class="col-1">
+                        <div class="dropdown">
+                          <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            tutoriale
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {% for tutorial in user_trick.trick.tutorials.all %}
+                                <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                </li>
+            {% endif %}
+            {% if user_trick.rank <= 4 %}
+              <li class="list-group-item {% list_color user_trick.rank %}">
+                {% progress_bar user_trick.rank user_trick.land_count %}
+              </li>
+            {% endif %}
+            <li class="list-group-item {% list_color user_trick.rank %}">
+                <div class="d-grid gap-2 d-md-flex justify-content-evenly">
+                    <form action="{% url 'tricks:draw' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="land_{{ user_trick.id }}" class="btn {% button_color user_trick.rank %}">
+                            zaliczone +1 <img src="{% static "main/img/ken16.png" %}" alt="kens">
+                        </button>
+                    </form>
+                    <a href="{% url "tricks:draw" %}" class="btn {% button_color user_trick.rank %}">
+                        losuj inny <img src="{% static "main/img/refresh16.png" %}">
+                    </a>
+                </div>
+            </li>
+          </ul>
+        </div>
+{% endblock %}

@@ -29,8 +29,8 @@ class Trick(Timestamped):
 
 class UserTrick(models.Model):
     """defines user's tricks"""
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name="tricks")
-    trick = models.ForeignKey('Trick', on_delete=models.CASCADE, related_name="users")
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name="user_trick")
+    trick = models.ForeignKey('Trick', on_delete=models.CASCADE, related_name="user_trick")
     # how many times user landed the trick
     land_count = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(100)])
     # when the trick was added

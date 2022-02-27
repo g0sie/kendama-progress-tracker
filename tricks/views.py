@@ -1,4 +1,7 @@
+import random
+
 from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.db.models import Max
 
 from .models import Trick, UserTrick
 from .forms import TrickForm
@@ -76,3 +79,24 @@ def add_from_list(request):
         user_tricks_ids = UserTrick.objects.filter(user=request.user).values('trick__id')
         tricks = Trick.objects.filter(official=True).exclude(id__in=user_tricks_ids).prefetch_related("tutorials")
         return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
+
+
+def get_random_user_trick(user):
+    user_tricks = UserTrick.objects.filter(user=user, rank__lte=5)
+    count = user_tricks.count()
+    return user_tricks[random.randint(0, count - 1)]
+
+
+def draw_a_trick(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            # if user clicked 'land' button
+            land_keys = [key for key in request.POST.keys() if key.startswith("land_")]
+            if land_keys:
+                key = int(land_keys[0].split("_")[1])
+                land_trick(key)
+                request.user.profile.kens += 1
+                request.user.profile.save()
+            return HttpResponseRedirect(reverse('tricks:draw'))
+        user_trick = get_random_user_trick(request.user)
+        return render(request, 'tricks/draw_a_trick.html', {'user_trick': user_trick})

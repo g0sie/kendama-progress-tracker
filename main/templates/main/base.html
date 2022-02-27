@@ -19,7 +19,7 @@
                 <a class="nav-link" href="{% url 'tricks:user_tricks' %}">twoje triki</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled">losuj trik</a>
+                <a class="nav-link" href="{% url 'tricks:draw' %}">losuj trik</a>
               </li>
             </ul>
             <div><strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens"></div>
