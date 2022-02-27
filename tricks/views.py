@@ -81,13 +81,13 @@ def add_from_list(request):
         return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
 
 
-def get_random_trick(user):
-    tricks = Trick.objects.filter(user_trick__user=user)
-    count = tricks.count()
-    return tricks[random.randint(0, count - 1)]
+def get_random_user_trick(user):
+    user_tricks = UserTrick.objects.filter(user=user, rank__lte=5)
+    count = user_tricks.count()
+    return user_tricks[random.randint(0, count - 1)]
 
 
 def draw_a_trick(request):
     if request.user.is_authenticated:
-        trick = get_random_trick(request.user)
-        return render(request, 'tricks/draw_a_trick.html', {'trick': trick})
+        user_trick = get_random_user_trick(request.user)
+        return render(request, 'tricks/draw_a_trick.html', {'user_trick': user_trick})
