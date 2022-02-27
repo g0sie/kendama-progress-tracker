@@ -39,7 +39,9 @@
                             zaliczone +1 <img src="{% static "main/img/ken16.png" %}" alt="kens">
                         </button>
                     </form>
-                    <a href="{% url "tricks:draw" %}" class="btn {% button_color user_trick.rank %}">losuj inny</a>
+                    <a href="{% url "tricks:draw" %}" class="btn {% button_color user_trick.rank %}">
+                        losuj inny <img src="{% static "main/img/refresh16.png" %}">
+                    </a>
                 </div>
             </li>
           </ul>
