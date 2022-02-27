@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,13 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://your-kendama-trainer.herokuapp.com/',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -132,9 +137,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # shell_plus
-
 SHELL_PLUS_PRINT_SQL = True
 
 # crispy forms
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Activate django-heroku
+django_heroku.settings(locals())
