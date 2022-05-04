@@ -68,7 +68,7 @@ ROOT_URLCONF = 'ykt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,3 +143,8 @@ SHELL_PLUS_PRINT_SQL = True
 # crispy forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# login/logout
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
