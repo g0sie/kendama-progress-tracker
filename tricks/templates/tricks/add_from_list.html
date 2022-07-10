@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block title %} dodaj trik {% endblock %}
+{% block body %}
+    <div class="card bg-light">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="true" href="{% url "tricks:add_new_trick" %}">nowy trik</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">wybierz z listy</a>
+              </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            {% for trick in tricks %}
+                <div class="card">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ trick.name }}</h5>
+                          {% for tutorial in trick.tutorials.all %}
+                              <a href="{{ tutorial.url }}" class="card-link">tutorial {{ tutorial.author }}</a>
+                          {% endfor %}
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-md-2 col-lg-2 col-xl-1 col-xxl-1 align-self-center">
+                        <form action="{% url 'tricks:add_from_list' %}" method="post">
+                            {% csrf_token %}
+                            <button name="add_{{ trick.id }}" type="submit" class="btn btn-outline-dark">dodaj</button>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

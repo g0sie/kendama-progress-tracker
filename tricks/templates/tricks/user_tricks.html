@@ -1,0 +1,70 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load tricks_extras %}
+{% block title %}twoje triki{% endblock %}
+{% block body %}
+    <div class="d-grid gap-3">
+
+        <div class="dropdown d-flex justify-content-end">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            dodaj trik
+          </button>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="{% url "tricks:add_from_list" %}">z listy</a></li>
+            <li><a class="dropdown-item" href="{% url "tricks:add_new_trick" %}">nowy</a></li>
+          </ul>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+        {% for user_trick in user_trick_pairs %}
+            <div class="col-6">
+            <div class="card {% card_color user_trick.rank %} h-100 text-center">
+              <div class="card-header">
+                  <h5>{{ user_trick.trick.name }}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                {% if user_trick.trick.official %}
+                    <li class="list-group-item {% list_color user_trick.rank %}">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                          <div class="col-3">
+                            <div class="dropdown">
+                              <button class="btn {% button_color user_trick.rank %} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                tutoriale
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% for tutorial in user_trick.trick.tutorials.all %}
+                                    <li><a class="dropdown-item" href="{{ tutorial.url }}" target="_blank">{{ tutorial.author }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </li>
+                {% endif %}
+                {% if user_trick.rank <= 4 %}
+                  <li class="list-group-item {% list_color user_trick.rank %}">
+                    {% progress_bar user_trick.rank user_trick.land_count %}
+                  </li>
+                  <li class="list-group-item {% list_color user_trick.rank %}">
+                    <form action="{% url 'tricks:user_tricks' %}" method="post">
+                        {% csrf_token %}
+                          <div class="d-grid gap-2 col-6 mx-auto">
+                            {% get_is_rank_up user_trick.rank user_trick.land_count as is_rank_up %}
+                              {% if is_rank_up %}
+                                  <button type="submit" name="rankup_{{ user_trick.id }}" class="btn {% button_color user_trick.rank %}">
+                                    10 <img src="{% static "main/img/ken16.png" %}" alt="kens">
+                                  </button>
+                              {% else %}
+                                  <button type="submit" name="land_{{ user_trick.id }}" class="btn {% button_color user_trick.rank %}">+1</button>
+                              {% endif %}
+                          </div>
+                    </form>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

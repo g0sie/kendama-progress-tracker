@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} dodaj trik {% endblock %}
+{% block body %}
+    <div class="card bg-light">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="true" href="#">nowy trik</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'tricks:add_from_list' %}">wybierz z listy</a>
+              </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            {% crispy form %}
+        </div>
+    </div>
+{% endblock %}
