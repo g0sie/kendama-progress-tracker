@@ -14,6 +14,7 @@ import environ
 import django_heroku
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -105,6 +106,10 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+# database for testing
+if 'test' in sys.argv:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 
 # Password validation
