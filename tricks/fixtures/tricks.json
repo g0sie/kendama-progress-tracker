@@ -75,5 +75,115 @@
     "difficulty": "b",
     "official": true
   }
+},
+{
+  "model": "tricks.trick",
+  "pk": 8,
+  "fields": {
+    "created": "2022-07-12T20:35:39.385Z",
+    "modified": "2022-07-12T20:35:39.385Z",
+    "name": "lunar",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 9,
+  "fields": {
+    "created": "2022-07-12T20:36:40.200Z",
+    "modified": "2022-07-12T20:36:40.200Z",
+    "name": "juggle",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 10,
+  "fields": {
+    "created": "2022-07-12T20:37:08.798Z",
+    "modified": "2022-07-12T20:37:08.798Z",
+    "name": "bird over the valley",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 11,
+  "fields": {
+    "created": "2022-07-12T20:37:41.629Z",
+    "modified": "2022-07-12T20:37:41.629Z",
+    "name": "whirlwind",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 12,
+  "fields": {
+    "created": "2022-07-12T20:38:04.783Z",
+    "modified": "2022-07-12T20:38:04.783Z",
+    "name": "juggle spike",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 13,
+  "fields": {
+    "created": "2022-07-12T20:38:34.603Z",
+    "modified": "2022-07-12T20:38:34.603Z",
+    "name": "lunar flip",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 14,
+  "fields": {
+    "created": "2022-07-12T20:39:08.269Z",
+    "modified": "2022-07-12T20:39:08.269Z",
+    "name": "one turn lighthouse",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 15,
+  "fields": {
+    "created": "2022-07-12T20:39:44.980Z",
+    "modified": "2022-07-12T20:39:44.980Z",
+    "name": "sweets special",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 16,
+  "fields": {
+    "created": "2022-07-12T20:40:21.542Z",
+    "modified": "2022-07-12T20:40:21.542Z",
+    "name": "lunar barrel roll",
+    "difficulty": "i",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 17,
+  "fields": {
+    "created": "2022-07-12T20:40:48.354Z",
+    "modified": "2022-07-12T20:40:48.354Z",
+    "name": "goon circle",
+    "difficulty": "i",
+    "official": true
+  }
 }
 ]
