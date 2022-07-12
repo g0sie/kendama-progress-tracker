@@ -24,6 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'tricks:draw' %}">losuj trik</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'tricks:add_from_list' %}">dodaj trik</a>
+              </li>
             </ul>
             <div>
                 <strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens">
