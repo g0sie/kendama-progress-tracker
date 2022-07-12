@@ -1,13 +1,17 @@
-div.no-trick-container {
+.draw-trick-container {
     display: flex;
-    height: calc(100vh - 2*73px - 24px);
+    height: calc(100vh - 2*(73px + 24px));
     justify-content: center;
     align-items: center;
 }
 
-div.no-trick-message {
+.no-trick-message {
     display: flex;
     flex-direction: column;
     max-width: fit-content;
     justify-content: center;
+}
+
+.draw-trick-card {
+    min-width: 80%;
 }

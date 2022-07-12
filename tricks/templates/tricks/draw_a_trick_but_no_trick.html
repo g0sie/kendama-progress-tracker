@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
 {% load static %}
-{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/draw_no_trick.css"  %}">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/draw_trick.css"  %}">{% endblock %}
 {% block title %} losuj trik {% endblock %}
 {% block body %}
-  <div class='no-trick-container'>
+  <div class='draw-trick-container'>
     <div class='no-trick-message'>
       <p>Aby ta funkcja działała, musisz najpierw dodać jakiś trik</p>
       <a href={% url 'tricks:add_from_list' %} class="btn btn-outline-primary">Dodaj trik</a>
