@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
 {% load static %}
-{% load tricks_extras %}
+{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/draw_no_trick.css"  %}">{% endblock %}
 {% block title %} losuj trik {% endblock %}
 {% block body %}
-  <div>
-    <p>Aby ta funkcja działała, musisz najpierw dodać jakiś trik</p>
-    <button type="button" class="btn btn-outline-primary">Dodaj trik</button>
+  <div class='no-trick-container'>
+    <div class='no-trick-message'>
+      <p>Aby ta funkcja działała, musisz najpierw dodać jakiś trik</p>
+      <a href={% url 'tricks:add_from_list' %} class="btn btn-outline-primary">Dodaj trik</a>
+    </div>
   </div>
 {% endblock %}
