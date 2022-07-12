@@ -1,0 +1,79 @@
+[
+{
+  "model": "tricks.trick",
+  "pk": 1,
+  "fields": {
+    "created": "2022-07-12T20:26:19.995Z",
+    "modified": "2022-07-12T20:26:19.995Z",
+    "name": "big cup",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 2,
+  "fields": {
+    "created": "2022-07-12T20:29:09.184Z",
+    "modified": "2022-07-12T20:29:09.184Z",
+    "name": "kenflip",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 3,
+  "fields": {
+    "created": "2022-07-12T20:29:47.223Z",
+    "modified": "2022-07-12T20:29:47.223Z",
+    "name": "airplane",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 4,
+  "fields": {
+    "created": "2022-07-12T20:30:28.281Z",
+    "modified": "2022-07-12T20:30:28.281Z",
+    "name": "jumping stick",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 5,
+  "fields": {
+    "created": "2022-07-12T20:31:03.341Z",
+    "modified": "2022-07-12T20:31:03.341Z",
+    "name": "earthturn",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 6,
+  "fields": {
+    "created": "2022-07-12T20:31:34.796Z",
+    "modified": "2022-07-12T20:31:34.796Z",
+    "name": "bird",
+    "difficulty": "b",
+    "official": true
+  }
+},
+{
+  "model": "tricks.trick",
+  "pk": 7,
+  "fields": {
+    "created": "2022-07-12T20:32:12.517Z",
+    "modified": "2022-07-12T20:32:12.517Z",
+    "name": "swing spike",
+    "difficulty": "b",
+    "official": true
+  }
+}
+]

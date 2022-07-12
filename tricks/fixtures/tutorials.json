@@ -1,0 +1,79 @@
+[
+{
+  "model": "tricks.tutorial",
+  "pk": 1,
+  "fields": {
+    "created": "2022-07-12T20:26:49.740Z",
+    "modified": "2022-07-12T20:26:49.740Z",
+    "trick": 1,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=wxhkBcuT4DE"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 2,
+  "fields": {
+    "created": "2022-07-12T20:29:17.594Z",
+    "modified": "2022-07-12T20:29:17.594Z",
+    "trick": 2,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=OC_jn6o_CaQ"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 3,
+  "fields": {
+    "created": "2022-07-12T20:29:49.232Z",
+    "modified": "2022-07-12T20:29:49.232Z",
+    "trick": 3,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=3l4P4X9FjWw"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 4,
+  "fields": {
+    "created": "2022-07-12T20:30:38.881Z",
+    "modified": "2022-07-12T20:30:38.881Z",
+    "trick": 4,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=PEHi7HegWks"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 5,
+  "fields": {
+    "created": "2022-07-12T20:31:15.676Z",
+    "modified": "2022-07-12T20:31:15.676Z",
+    "trick": 5,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=V4AslwtPi2E"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 6,
+  "fields": {
+    "created": "2022-07-12T20:31:46.335Z",
+    "modified": "2022-07-12T20:31:46.335Z",
+    "trick": 6,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=V7W5nMyBz6I"
+  }
+},
+{
+  "model": "tricks.tutorial",
+  "pk": 7,
+  "fields": {
+    "created": "2022-07-12T20:32:21.758Z",
+    "modified": "2022-07-12T20:32:21.758Z",
+    "trick": 7,
+    "author": "krom pl",
+    "url": "https://www.youtube.com/watch?v=-5Q7B9K8pgc"
+  }
+}
+]
