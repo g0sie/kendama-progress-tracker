@@ -30,6 +30,9 @@
             </ul>
             <div>
                 <strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens">
+                {% if request.user.is_superuser %}
+                  <a class="btn btn-outline-danger" href="{% url 'admin:index' %}">admin panel</a>
+                {% endif %}
                 <a type="button" class="btn btn-outline-primary me-2" href="{% url 'logout' %}">wyloguj się</a>
             </div>
           </header>
