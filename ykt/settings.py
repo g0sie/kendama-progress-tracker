@@ -97,11 +97,6 @@ WSGI_APPLICATION = 'ykt.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # uncomment for dumping data
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': 'fixtures_db',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('POSTGRES_NAME'),
@@ -211,3 +206,5 @@ LOGGING = {
         },
     }
 }
+
+ADMIN_PANEL_URL = env('ADMIN_PANEL_URL')

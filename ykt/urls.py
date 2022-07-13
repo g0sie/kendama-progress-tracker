@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(settings.ADMIN_PANEL_URL, admin.site.urls),
     path('', include('main.urls')),
     path('tricks/', include('tricks.urls')),
     path('register/', include('register.urls')),
