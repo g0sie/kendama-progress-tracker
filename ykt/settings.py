@@ -206,3 +206,5 @@ LOGGING = {
         },
     }
 }
+
+ADMIN_PANEL_URL = env('ADMIN_PANEL_URL')
