@@ -8,10 +8,17 @@ from tricks.models import Trick
 class Command(BaseCommand):
     help = 'adds new tutorials to database'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '-m', '--max',
+            type=int,
+            dest='max',
+            help='maximum number of new tricks to add'
+        )
+
     def setup(self):
         self.playlists = Playlist.objects.all()
         self.count_added = 0
-        self.max = 15
         self.null_trick, created = Trick.objects.get_or_create(
             name='null', difficulty='o')
 
@@ -26,8 +33,9 @@ class Command(BaseCommand):
             )
             self.count_added += 1
 
-    def handle(self, **options):
+    def handle(self, *args, **options):
         self.setup()
+        self.max = options.get('max', 10)
 
         for playlist in self.playlists:
             for video_url in pyPlaylist(playlist.url).video_urls:
