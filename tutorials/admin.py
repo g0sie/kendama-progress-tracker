@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Tutorial, Author
+from .models import Tutorial, Author, Playlist
 
 
 @admin.register(Tutorial)
@@ -12,3 +12,8 @@ class TutorialAdmin(admin.ModelAdmin):
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Playlist)
+class PlaylistAdmin(admin.ModelAdmin):
+    list_display = ['author', 'name']
