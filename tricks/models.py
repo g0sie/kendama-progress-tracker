@@ -5,9 +5,12 @@ from common.models import Timestamped
 
 
 class Tutorial(Timestamped):
-    trick = models.ForeignKey("Trick", on_delete=models.CASCADE, related_name="tutorials")
+    yt_title = models.CharField(max_length=100, null=True)
+    trick = models.ForeignKey(
+        "Trick", on_delete=models.CASCADE, related_name="tutorials")
     author = models.CharField(max_length=100)
     url = models.URLField()
+    ready_to_public = models.BooleanField(default=False)
 
 
 class Trick(Timestamped):
@@ -29,10 +32,13 @@ class Trick(Timestamped):
 
 class UserTrick(models.Model):
     """defines user's tricks"""
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name="user_trick")
-    trick = models.ForeignKey('Trick', on_delete=models.CASCADE, related_name="user_trick")
+    user = models.ForeignKey(
+        'auth.User', on_delete=models.CASCADE, related_name="user_trick")
+    trick = models.ForeignKey(
+        'Trick', on_delete=models.CASCADE, related_name="user_trick")
     # how many times user landed the trick
-    land_count = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(100)])
+    land_count = models.PositiveSmallIntegerField(
+        default=0, validators=[MaxValueValidator(100)])
     # when the trick was added
     added = models.DateTimeField(auto_now_add=True)
     # when the trick was passed if it was
