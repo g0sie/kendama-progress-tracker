@@ -10,7 +10,6 @@ class Tutorial(Timestamped):
         "Trick", on_delete=models.CASCADE, related_name="tutorials")
     author = models.CharField(max_length=100)
     url = models.URLField()
-    ready_to_public = models.BooleanField(default=False)
 
 
 class Trick(Timestamped):
