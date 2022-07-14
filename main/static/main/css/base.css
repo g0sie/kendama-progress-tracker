@@ -1,0 +1,7 @@
+.nav-link-danger {
+    color: var(--bs-danger);
+}
+
+.nav-link-danger:hover {
+    color: #E0115F;
+}
