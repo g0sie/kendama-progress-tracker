@@ -12,5 +12,12 @@ class Tutorial(Timestamped):
     url = models.URLField()
 
 
+class Playlist(models.Model):
+    name = models.CharField(max_length=50)
+    url = models.URLField()
+    author = models.ForeignKey(
+        'Author', on_delete=models.CASCADE, related_name='playlists')
+
+
 class Author(models.Model):
     name = models.CharField(max_length=15)
