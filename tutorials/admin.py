@@ -25,6 +25,7 @@ class NullTrickFilter(admin.SimpleListFilter):
 class TutorialAdmin(admin.ModelAdmin):
     list_display = ['trick', 'yt_title', 'author', 'created', 'modified']
     list_filter = ['author', NullTrickFilter]
+    autocomplete_fields = ('trick',)
 
 
 @admin.register(Author)
