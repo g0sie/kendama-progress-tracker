@@ -23,7 +23,7 @@ class NullTrickFilter(admin.SimpleListFilter):
 
 @admin.register(Tutorial)
 class TutorialAdmin(admin.ModelAdmin):
-    list_display = ['trick', 'author', 'created', 'modified']
+    list_display = ['trick', 'yt_title', 'author', 'created', 'modified']
     list_filter = ['author', NullTrickFilter]
 
 
