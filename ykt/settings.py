@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'tricks.apps.TricksConfig',
+    'tutorials.apps.TutorialsConfig',
     'common.apps.CommonConfig',
     'register.apps.RegisterConfig',
 ]

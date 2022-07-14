@@ -4,14 +4,6 @@ from django.core.validators import MaxValueValidator
 from common.models import Timestamped
 
 
-class Tutorial(Timestamped):
-    yt_title = models.CharField(max_length=100, null=True)
-    trick = models.ForeignKey(
-        "Trick", on_delete=models.CASCADE, related_name="tutorials")
-    author = models.CharField(max_length=100)
-    url = models.URLField()
-
-
 class Trick(Timestamped):
     name = models.CharField(max_length=300)
     difficulty = models.CharField(
