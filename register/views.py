@@ -41,7 +41,7 @@ def register(request):
             email.send(fail_silently=False)
 
             messages.success(
-                request, f'Zostałeś zarejestrowany użytkowniku {user.username}. Teraz potwierdź swój email!')
+                request, f'Zostałeś zarejestrowany użytkowniku {user.username}! Teraz sprawdź swoją skrzynkę email, aby aktywować konto.')
             return redirect(reverse('index'))
 
         messages.error(
