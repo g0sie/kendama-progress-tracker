@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 import environ
 import django_heroku
 from pathlib import Path
@@ -164,8 +165,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Activate django-heroku
 django_heroku.settings(locals())
-# login/logout
 
+# login/logout
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -209,3 +210,21 @@ LOGGING = {
 }
 
 ADMIN_PANEL_URL = env('ADMIN_PANEL_URL')
+
+# display messages as bootstrap components
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+# sending emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')

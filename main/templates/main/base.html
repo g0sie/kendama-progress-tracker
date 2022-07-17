@@ -16,38 +16,48 @@
 </head>
 <body>
     <div class="container">
-        {% if request.user.is_authenticated %}
-          <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <ul class="nav nav-pills nav-fill">
+
+      {% if request.user.is_authenticated %}
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tricks:user_tricks' %}">twoje triki</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tricks:draw' %}">losuj trik</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tricks:add_from_list' %}">dodaj trik</a>
+            </li>
+            {% if request.user.is_superuser %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'tricks:user_tricks' %}">twoje triki</a>
+                <a class="nav-link nav-link-danger" href="{% url 'tutorials:add' number=5 %}">dodaj 5 tutoriali</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'tricks:draw' %}">losuj trik</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'tricks:add_from_list' %}">dodaj trik</a>
-              </li>
+            {% endif %}
+          </ul>
+          <div>
+              <strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens">
               {% if request.user.is_superuser %}
-                <li class="nav-item">
-                  <a class="nav-link nav-link-danger" href="{% url 'tutorials:add' number=5 %}">dodaj 5 tutoriali</a>
-                </li>
+                <a class="btn btn-outline-danger" href="{% url 'admin:index' %}">admin panel</a>
               {% endif %}
-            </ul>
-            <div>
-                <strong style="font-size: 19px">{{ request.user.profile.kens }}</strong> <img src="{% static "main/img/ken24.png" %}" alt="kens">
-                {% if request.user.is_superuser %}
-                  <a class="btn btn-outline-danger" href="{% url 'admin:index' %}">admin panel</a>
-                {% endif %}
-                <a type="button" class="btn btn-outline-primary me-2" href="{% url 'logout' %}">wyloguj się</a>
-            </div>
-          </header>
-        {% else %}
-          <header class="d-flex flex-wrap align-items-center justify-content-end py-3 mb-4 border-bottom">
-            <a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">zaloguj się</a>
-            <a type="button" class="btn btn-primary" href="{% url 'register' %}">zarejestruj się</a>
-          </header>
-        {% endif %}
+              <a type="button" class="btn btn-outline-primary me-2" href="{% url 'logout' %}">wyloguj się</a>
+          </div>
+        </header>
+      {% else %}
+        <header class="d-flex flex-wrap align-items-center justify-content-end py-3 mb-4 border-bottom">
+          <a type="button" class="btn btn-outline-primary me-2" href="{% url 'login' %}">zaloguj się</a>
+          <a type="button" class="btn btn-primary" href="{% url 'register' %}">zarejestruj się</a>
+        </header>
+      {% endif %}
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
     {% block body %}{% endblock %}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
