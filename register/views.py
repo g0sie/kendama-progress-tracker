@@ -31,7 +31,7 @@ def register(request):
 
             # send email
             email_subject = 'Zweryfikuj swój email'
-            email_body = f'Witaj użytkowniku {user.username}! Zweryfikuj swój email klikając w link poniżej.\n' + activate_url
+            email_body = f'Witaj użytkowniku {user.username}! Zweryfikuj swój email klikając w link poniżej.\n\n' + activate_url
             email = EmailMessage(
                 email_subject,
                 email_body,
