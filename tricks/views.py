@@ -34,7 +34,7 @@ def user_tricks(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': page_obj})
+    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': page_obj, 'tricks_number': tricks_number})
 
 
 def land_trick(user_trick_id: int):
