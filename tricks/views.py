@@ -2,6 +2,7 @@ import random
 
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .models import Trick, UserTrick
 from .forms import TrickForm
@@ -24,10 +25,16 @@ def user_tricks(request):
             key = int(rank_up_keys[0].split("_")[1])
             rank_up_trick(key)
         return HttpResponseRedirect(reverse('tricks:user_tricks'))
+
+    tricks_number = request.GET.get('tricks', 18)
     user_trick_pairs = UserTrick.objects.filter(user=request.user) \
         .select_related("trick").prefetch_related("trick__tutorials") \
         .order_by("rank", "-trick__official")
-    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': user_trick_pairs})
+    paginator = Paginator(user_trick_pairs, tricks_number)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': page_obj})
 
 
 def land_trick(user_trick_id: int):
