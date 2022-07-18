@@ -5,17 +5,17 @@
 {% block body %}
     <div class="d-grid gap-3">
 
-        <div class="dropdown d-flex justify-content-end">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            dodaj trik
-          </button>
-          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{% url "tricks:add_from_list" %}">z listy</a></li>
-            <li><a class="dropdown-item" href="{% url "tricks:add_new_trick" %}">nowy</a></li>
-          </ul>
-        </div>
+      <div class="dropdown d-flex justify-content-end">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          dodaj trik
+        </button>
+        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{% url "tricks:add_from_list" %}">z listy</a></li>
+          <li><a class="dropdown-item" href="{% url "tricks:add_new_trick" %}">nowy</a></li>
+        </ul>
+      </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="row row-cols-1 row-cols-md-3 g-3">
         {% for user_trick in user_trick_pairs %}
             <div class="col-6">
             <div class="card {% card_color user_trick.rank %} h-100 text-center">
@@ -63,11 +63,9 @@
                 {% endif %}
               </ul>
             </div>
-            </div>
+          </div>
         {% endfor %}
-        </div>
-
-        {% include "page_navigation.html" with page_obj=user_trick_pairs %}
-        
+      </div>
+      {% include "page_navigation.html" with page_obj=user_trick_pairs %}
     </div>
 {% endblock %}
