@@ -3,6 +3,7 @@ import random
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Case, When, Value
 
 from .models import Trick, UserTrick
 from .forms import TrickForm
@@ -29,7 +30,17 @@ def user_tricks(request):
     tricks_number = request.GET.get('tricks', 18)
     user_trick_pairs = UserTrick.objects.filter(user=request.user) \
         .select_related("trick").prefetch_related("trick__tutorials") \
-        .order_by("rank", "-trick__official")
+        .order_by(
+            "rank",
+            Case(
+                When(trick__difficulty='b', then=Value(0)),
+                When(trick__difficulty='i', then=Value(1)),
+                When(trick__difficulty='a', then=Value(2)),
+                default=Value(3)
+            ),
+            "-trick__official"
+    )
+
     paginator = Paginator(user_trick_pairs, tricks_number)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
