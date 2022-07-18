@@ -97,12 +97,19 @@ def add_from_list(request):
             trick = Trick.objects.get(id=add_key)
             UserTrick.objects.create(user=request.user, trick=trick)
 
-    tricks_number = request.GET.get('tricks', 12)
+    tricks_number = request.GET.get('tricks', 8)
     # display only the tricks the user doesn't have
     user_tricks_ids = UserTrick.objects.filter(
         user=request.user).values('trick__id')
     tricks = Trick.objects.filter(official=True).exclude(
-        id__in=user_tricks_ids).prefetch_related("tutorials")
+        id__in=user_tricks_ids).order_by(
+            Case(
+                When(difficulty='b', then=Value(0)),
+                When(difficulty='i', then=Value(1)),
+                When(difficulty='a', then=Value(2)),
+                default=Value(3)
+            )
+    ).prefetch_related("tutorials")
 
     paginator = Paginator(tricks, tricks_number)
     page_number = request.GET.get('page')
