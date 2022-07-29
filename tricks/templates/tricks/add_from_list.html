@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %} dodaj trik {% endblock %}
+{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/add_from_list.css"  %}">{% endblock %}
 {% block body %}
     <div class="card bg-light">
         <div class="card-header">
@@ -34,5 +36,6 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
+        {% include "page_navigation.html" with page_obj=tricks %}
+      </div>
 {% endblock %}

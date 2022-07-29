@@ -2,6 +2,8 @@ import random
 
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Case, When, Value
 
 from .models import Trick, UserTrick
 from .forms import TrickForm
@@ -24,10 +26,26 @@ def user_tricks(request):
             key = int(rank_up_keys[0].split("_")[1])
             rank_up_trick(key)
         return HttpResponseRedirect(reverse('tricks:user_tricks'))
+
+    tricks_number = request.GET.get('tricks', 18)
     user_trick_pairs = UserTrick.objects.filter(user=request.user) \
         .select_related("trick").prefetch_related("trick__tutorials") \
-        .order_by("rank", "-trick__official")
-    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': user_trick_pairs})
+        .order_by(
+            "rank",
+            Case(
+                When(trick__difficulty='b', then=Value(0)),
+                When(trick__difficulty='i', then=Value(1)),
+                When(trick__difficulty='a', then=Value(2)),
+                default=Value(3)
+            ),
+            "-trick__official"
+    )
+
+    paginator = Paginator(user_trick_pairs, tricks_number)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "tricks/user_tricks.html", {'user_trick_pairs': page_obj, 'tricks_number': tricks_number})
 
 
 def land_trick(user_trick_id: int):
@@ -78,12 +96,26 @@ def add_from_list(request):
         if add_key not in UserTrick.objects.filter(user=request.user).values_list("trick__id", flat=True):
             trick = Trick.objects.get(id=add_key)
             UserTrick.objects.create(user=request.user, trick=trick)
+
+    tricks_number = request.GET.get('tricks', 8)
     # display only the tricks the user doesn't have
     user_tricks_ids = UserTrick.objects.filter(
         user=request.user).values('trick__id')
     tricks = Trick.objects.filter(official=True).exclude(
-        id__in=user_tricks_ids).prefetch_related("tutorials")
-    return render(request, 'tricks/add_from_list.html', {'tricks': tricks})
+        id__in=user_tricks_ids).order_by(
+            Case(
+                When(difficulty='b', then=Value(0)),
+                When(difficulty='i', then=Value(1)),
+                When(difficulty='a', then=Value(2)),
+                default=Value(3)
+            )
+    ).prefetch_related("tutorials")
+
+    paginator = Paginator(tricks, tricks_number)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'tricks/add_from_list.html', {'tricks': page_obj, 'tricks_number': tricks_number})
 
 
 def get_random_user_trick(user):
