@@ -26,3 +26,9 @@ class TestViews(TestCase):
         self.assertTrue(logged_in)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed('tricks/user_tricks.html')
+
+    def test_user_tricks_POST_not_logged_in(self):
+        response = self.client.get(self.user_tricks_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertIn(settings.LOGIN_URL, response.url)
