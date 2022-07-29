@@ -30,3 +30,17 @@ class TestViews(TestCase):
         self.assertEquals(response.url, reverse('index'))
         self.assertEquals(User.objects.all().count(), 1)
         self.assertEquals(UserProfile.objects.all().count(), 1)
+
+    def test_register_POST_invalid(self):
+        response = self.client.post(self.register_url, {
+            'username': 'invaliduser123',
+            'email': 'email123@op.pl',
+            'password1': 'p4ssword123',
+            'password2': 'p4ssword1234'
+        })
+        user = User.objects.filter(username='user123')
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, self.register_url)
+        self.assertEquals(User.objects.all().count(), 0)
+        self.assertEquals(UserProfile.objects.all().count(), 0)
