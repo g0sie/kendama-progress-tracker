@@ -24,12 +24,11 @@ class TestViews(TestCase):
             'password2': 'p4ssword123'
         })
         user = User.objects.get(username='user123')
-        userprofile = UserProfile.objects.get(user=user)
 
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.url, reverse('index'))
         self.assertEquals(User.objects.all().count(), 1)
-        self.assertEquals(UserProfile.objects.all().count(), 1)
+        self.assertFalse(user.is_active)
 
     def test_register_POST_invalid(self):
         response = self.client.post(self.register_url, {
