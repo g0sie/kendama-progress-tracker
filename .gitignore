@@ -4,3 +4,6 @@ env/
 staticfiles/
 **.sqlite3
 fixtures_db
+htmlcov/
+.coverage
+data/
