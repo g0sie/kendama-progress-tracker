@@ -32,3 +32,10 @@ class TestViews(TestCase):
 
         self.assertEquals(response.status_code, 302)
         self.assertIn(settings.LOGIN_URL, response.url)
+
+    def test_user_tricks_POST_logged_in(self):
+        self.client.login(username='user123', password='p4ssword123')
+        response = self.client.post(self.user_tricks_url)
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, self.user_tricks_url)
