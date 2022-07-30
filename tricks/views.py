@@ -153,8 +153,13 @@ def delete_trick(request, user_trick_id: int):
         UserTrick, pk=user_trick_id, user=request.user)
 
     if request.method == 'POST':
-        # to do delete
-        print(user_trick_id)
+        if user_trick.trick.official:
+            # delete only user_trick
+            user_trick.delete()
+        else:
+            # delete user_trick and trick
+            user_trick.trick.delete()
+
         return HttpResponseRedirect(reverse('tricks:user_tricks'))
 
     return render(request, "tricks/delete_trick.html", {'user_trick': user_trick})
