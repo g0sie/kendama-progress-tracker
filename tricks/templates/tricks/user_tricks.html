@@ -21,7 +21,7 @@
             <div class="col-6">
             <div class="card {% card_color user_trick.rank %} h-100 text-center">
               <div class="card-header">
-                  <h5>{{ user_trick.trick.name }}</h5>
+                  <h5 class="trick-name">{{ user_trick.trick.name }}</h5>
                   <button class="delete btn btn-danger">
                     <img class="delete-icon" src="{% static "tricks/img/remove.svg" %}">
                   </button>
