@@ -6,10 +6,16 @@
     margin: 0 auto;
     width: fit-content;
     height: calc(100vh - 2*(73px + 24px));
+    text-align: center;
 }
 
 .delete-message span {
     font-weight: 600;
+}
+
+.delete-message p {
+    font-size: 20px;
+    color: darkred;
 }
 
 .delete-buttons {

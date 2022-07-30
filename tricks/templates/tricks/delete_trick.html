@@ -4,7 +4,10 @@
 {% block title %} usuń trik {% endblock %}
 {% block body %}
   <div class='delete-container'>
-    <h4 class='delete-message'>Czy na pewno chcesz usunąć <span>{{ user_trick.trick.name }}</span>?</h4>
+    <div class="delete-message">
+      <h4>Czy na pewno chcesz usunąć <span>{{ user_trick.trick.name }}</span>?</h4>
+      <p>W ten sposób stracisz cały swój postęp :(</p>
+    </div>
     <div class="delete-buttons">
         <form action="{% url 'tricks:delete' user_trick.pk %}" method="post">
             {% csrf_token %}
