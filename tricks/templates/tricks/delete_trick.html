@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/draw_trick.css"  %}">{% endblock %}
+{% block title %} usuń trik {% endblock %}
+{% block body %}
+  <div class='draw-trick-container'>
+    <div class='no-trick-message'>
+      <p>Czy na pewno chcesz usunąć <span>{{ user_trick.trick.name }}</span></p>
+      <a href={% url 'tricks:delete_trick' user_trick.pk %} class="btn btn-danger">Usuń trick</a>
+      <a href={% url 'tricks:user_tricks' %} class="btn btn-secondary">Anuluj</a>
+    </div>
+  </div>
+{% endblock %}
