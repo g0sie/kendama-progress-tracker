@@ -2,10 +2,14 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ykt.settings')
+    DJANGO_SETTINGS_MODULE = env('DJANGO_SETTINGS_MODULE')
 
     # run coverage around tests automatically
     try:
