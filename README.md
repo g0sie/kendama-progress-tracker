@@ -34,3 +34,7 @@ There is also a 'losuj trik' page, where you can practice on random tricks. It's
 - Django 4.0
 - Bootstrap 5
 - Docker 20.10
+
+## Project status 💀
+
+The project has been abandoned because the technology stack doesn't work well with this kind of app. However I want to make a second version with better user experience in future.
