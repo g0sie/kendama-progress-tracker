@@ -27,3 +27,10 @@ The rule is simple - once you land a trick, click '+1'. After you fill up a prog
 There is also a 'losuj trik' page, where you can practice on random tricks. It's a great solution if you don't want to wonder what trick you should do now. If you land the trick, then click 'zaliczone', but if you're stucked and want to move on, you can click 'losuj inny' to draw another random trick. For every landed trick you get a kendama point so it's like a farm of points.
 
 ![screenshot of random trick page](screenshots/random.png)
+
+## Technologies
+
+- Python 3.10
+- Django 4.0
+- Bootstrap 5
+- Docker 20.10
