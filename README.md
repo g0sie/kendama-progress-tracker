@@ -4,6 +4,12 @@ An app that allows you to practice kendama and have more fun doing that. You can
 
 - https://your-kendama-trainer.herokuapp.com/
 
+## Table of Contents
+
+1. [How to use it](#how-to-use-it)
+1. [Technologies](#technologies)
+1. [Project status 💀](#project-status-💀)
+
 ## How to use it
 
 First, register yourself. Then go to your mailbox and click a link that we sent, to verificate your email address.
