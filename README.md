@@ -20,7 +20,7 @@ To see your list of tricks go to 'twoje triki'. As you can see below, there are 
 - redstone - if you land the trick 50 times,
 - gold - if you land the trick 100 times.
 
-There rule is simple - once you land a trick, click '+1'. After you fill up a progress bar of the trick, you can level up and get 10 kendama points. The goal is to land every trick 100 times and get a gold level.
+The rule is simple - once you land a trick, click '+1'. After you fill up a progress bar of the trick, you can level up and get 10 kendama points. The goal is to land every trick 100 times and get a gold level.
 
 ![screenshot of user's list of tricks](screenshots/tricks.png)
 
