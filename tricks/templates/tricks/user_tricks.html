@@ -21,7 +21,10 @@
             <div class="col-6">
             <div class="card {% card_color user_trick.rank %} h-100 text-center">
               <div class="card-header">
-                  <h5>{{ user_trick.trick.name }}</h5>
+                  <h5 class="trick-name">{{ user_trick.trick.name }}</h5>
+                  <a class="delete btn btn-danger" href="{% url "tricks:delete" user_trick.id %}">
+                    <img class="delete-icon" src="{% static "tricks/img/remove.svg" %}">
+                  </a>
               </div>
               <ul class="list-group list-group-flush">
                 {% if user_trick.trick.official %}

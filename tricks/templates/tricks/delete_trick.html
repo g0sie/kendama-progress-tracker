@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block styles %}<link rel="stylesheet" href="{% static "tricks/css/delete_trick.css"  %}">{% endblock %}
+{% block title %} usuń trik {% endblock %}
+{% block body %}
+  <div class='delete-container'>
+    <div class="delete-message">
+      <h4>Czy na pewno chcesz usunąć <span>{{ user_trick.trick.name }}</span>?</h4>
+      <p>W ten sposób stracisz cały swój postęp :(</p>
+    </div>
+    <div class="delete-buttons">
+        <form action="{% url 'tricks:delete' user_trick.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Usuń trick</button>
+        </form>
+        <a href={% url 'tricks:user_tricks' %} class="btn btn-secondary">Anuluj</a>
+    </div>
+  </div>
+{% endblock %}

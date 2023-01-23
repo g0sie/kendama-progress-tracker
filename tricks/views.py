@@ -1,6 +1,6 @@
 import random
 
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Case, When, Value
@@ -27,7 +27,7 @@ def user_tricks(request):
             rank_up_trick(key)
         return HttpResponseRedirect(reverse('tricks:user_tricks'))
 
-    tricks_number = request.GET.get('tricks', 18)
+    tricks_number = request.GET.get('tricks', 12)
     user_trick_pairs = UserTrick.objects.filter(user=request.user) \
         .select_related("trick").prefetch_related("trick__tutorials") \
         .order_by(
@@ -144,3 +144,22 @@ def draw_a_trick(request):
     if user_trick:
         return render(request, 'tricks/draw_a_trick.html', {'user_trick': user_trick})
     return render(request, 'tricks/draw_a_trick_but_no_trick.html')
+
+
+@login_required
+def delete_trick(request, user_trick_id: int):
+    """asks user if they wants to delete a trick for sure and deletes it"""
+    user_trick = get_object_or_404(
+        UserTrick, pk=user_trick_id, user=request.user)
+
+    if request.method == 'POST':
+        if user_trick.trick.official:
+            # delete only user_trick
+            user_trick.delete()
+        else:
+            # delete user_trick and trick
+            user_trick.trick.delete()
+
+        return HttpResponseRedirect(reverse('tricks:user_tricks'))
+
+    return render(request, "tricks/delete_trick.html", {'user_trick': user_trick})

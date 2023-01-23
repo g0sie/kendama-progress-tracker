@@ -8,3 +8,23 @@ li.list-group-item:first-child {
     align-items: end;
     height: 100%;
 }
+
+.card-header .delete {
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 0;
+}
+
+.trick-name {
+    margin-right: 26px;
+}
+
+.card-header .delete img {
+    width: 25px;
+    height: 25px;
+}
